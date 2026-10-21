@@ -1,0 +1,39 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="67.7743" height="65.7743" viewBox="0 0 67.7743 65.7743" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Nucleus">
+<g id="Nucleus outer glow main" opacity="0.9" filter="url(#filter0_f_0_27)">
+<path d="M33.8871 60.8871C49.9034 60.8871 62.8871 48.3511 62.8871 32.8871C62.8871 17.4232 49.9034 4.88715 33.8871 4.88715C17.8709 4.88715 4.88715 17.4232 4.88715 32.8871C4.88715 48.3511 17.8709 60.8871 33.8871 60.8871Z" fill="url(#paint0_radial_0_27)"/>
+</g>
+<g id="Nucleus glow High" filter="url(#filter1_f_0_27)">
+<path d="M34.0844 56.4818C47.6897 56.4818 58.719 45.8328 58.719 32.6966C58.719 19.5605 47.6897 8.9115 34.0844 8.9115C20.4791 8.9115 9.44979 19.5605 9.44979 32.6966C9.44979 45.8328 20.4791 56.4818 34.0844 56.4818Z" fill="#FFAAFF"/>
+</g>
+<g id="Nucleus_2">
+<use xlink:href="#stroke0_0_27" fill="url(#paint1_radial_0_27)"/>
+<mask id="stroke1_0_27" maskUnits="userSpaceOnUse" x="8.44979" y="7.9115" width="51" height="50" fill="black">
+<rect fill="white" x="8.44979" y="7.9115" width="51" height="50"/>
+<use xlink:href="#stroke0_0_27"/>
+</mask>
+<path d="M58.719 32.6966C58.719 45.8328 47.6897 56.4818 34.0844 56.4818C20.4791 56.4818 9.44979 45.8328 9.44979 32.6966C9.44979 19.5605 20.4791 8.9115 34.0844 8.9115C47.6897 8.9115 58.719 19.5605 58.719 32.6966Z" stroke-width="1.33026" stroke="#FFF2FF" mask="url(#stroke1_0_27)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_27" x="4.37114e-08" y="1.58932e-08" width="67.7743" height="65.7743" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.44357" result="effect1_foregroundBlur_0_27"/>
+</filter>
+<filter id="filter1_f_0_27" x="7.82074" y="7.28245" width="52.5273" height="50.8284" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="0.814525" result="effect1_foregroundBlur_0_27"/>
+</filter>
+<radialGradient id="paint0_radial_0_27" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(33.8871 32.8871) scale(29 28)">
+<stop stop-color="white" stop-opacity="0.14"/>
+<stop offset="1" stop-color="#D87DFF"/>
+</radialGradient>
+<radialGradient id="paint1_radial_0_27" cx="0" cy="0" r="1" gradientTransform="matrix(-6.89986 36.7442 -38.0565 -6.66194 40.9843 19.7375)" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#FFE5FF"/>
+</radialGradient>
+<path id="stroke0_0_27" d="M34.0844 56.4818C47.6897 56.4818 58.719 45.8328 58.719 32.6966C58.719 19.5605 47.6897 8.9115 34.0844 8.9115C20.4791 8.9115 9.44979 19.5605 9.44979 32.6966C9.44979 45.8328 20.4791 56.4818 34.0844 56.4818Z"/>
+</defs>
+</svg>
