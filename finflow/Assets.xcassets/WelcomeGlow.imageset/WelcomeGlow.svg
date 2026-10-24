@@ -17,14 +17,14 @@
 <feGaussianBlur stdDeviation="20" result="effect1_foregroundBlur_67_3521"/>
 </filter>
 <radialGradient id="paint0_radial_67_3521" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(201 201) scale(141)">
-<stop stop-color="#7B2FFF"/>
-<stop offset="0.5" stop-color="#3D0099"/>
-<stop offset="1" stop-color="#090023"/>
+<stop stop-color="#3A3A3A"/>
+<stop offset="0.5" stop-color="#1C1C1C"/>
+<stop offset="1" stop-color="#090909"/>
 </radialGradient>
 <radialGradient id="paint1_radial_67_3521" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(201 201) scale(148 149)">
-<stop stop-color="#B066FF"/>
-<stop offset="0.6" stop-color="#5500CC"/>
-<stop offset="1" stop-color="#090023"/>
+<stop stop-color="#4A4A4A"/>
+<stop offset="0.6" stop-color="#242424"/>
+<stop offset="1" stop-color="#090909"/>
 </radialGradient>
 </defs>
 </svg>

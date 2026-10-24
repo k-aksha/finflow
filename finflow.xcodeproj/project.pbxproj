@@ -8,16 +8,76 @@
 
 /* Begin PBXBuildFile section */
 		A1B2C3D4308604D200A0BC03 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4308604D200A0BC02 /* Lottie */; };
+		F1F0A1000000000000000007 /* FinFlowWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F1F0A1000000000000000001 /* FinFlowWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F1F0A1000000000000000009 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2075C69D308604D200A0BC95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1F0A100000000000000000B;
+			remoteInfo = FinFlowWidget;
+		};
+		F1F0B1000000000000000007 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2075C69D308604D200A0BC95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2075C6A4308604D200A0BC95;
+			remoteInfo = finflow;
+		};
+		F1F0C1000000000000000007 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2075C69D308604D200A0BC95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2075C6A4308604D200A0BC95;
+			remoteInfo = finflow;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F1F0A1000000000000000008 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				F1F0A1000000000000000007 /* FinFlowWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2075C6A5308604D200A0BC95 /* finflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = finflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F0A1000000000000000001 /* FinFlowWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FinFlowWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F0B1000000000000000001 /* FinFlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinFlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F0C1000000000000000001 /* FinFlowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinFlowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2075C6A7308604D200A0BC95 /* finflow */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = finflow;
+			sourceTree = "<group>";
+		};
+		F1F0A1000000000000000002 /* FinFlowWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FinFlowWidget;
+			sourceTree = "<group>";
+		};
+		F1F0A1000000000000000003 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F1F0B1000000000000000002 /* FinFlowTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FinFlowTests;
+			sourceTree = "<group>";
+		};
+		F1F0C1000000000000000002 /* FinFlowUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FinFlowUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -29,6 +89,21 @@
 				A1B2C3D4308604D200A0BC03 /* Lottie in Frameworks */,
 			);
 		};
+		F1F0A1000000000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		F1F0B1000000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		F1F0C1000000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -36,6 +111,10 @@
 			isa = PBXGroup;
 			children = (
 				2075C6A7308604D200A0BC95 /* finflow */,
+				F1F0A1000000000000000003 /* Shared */,
+				F1F0A1000000000000000002 /* FinFlowWidget */,
+				F1F0B1000000000000000002 /* FinFlowTests */,
+				F1F0C1000000000000000002 /* FinFlowUITests */,
 				2075C6A6308604D200A0BC95 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				2075C6A5308604D200A0BC95 /* finflow.app */,
+				F1F0A1000000000000000001 /* FinFlowWidget.appex */,
+				F1F0B1000000000000000001 /* FinFlowTests.xctest */,
+				F1F0C1000000000000000001 /* FinFlowUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,11 +140,16 @@
 				2075C6A1308604D200A0BC95 /* Sources */,
 				2075C6A2308604D200A0BC95 /* Frameworks */,
 				2075C6A3308604D200A0BC95 /* Resources */,
+				F1F0A1000000000000000008 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
+			dependencies = (
+				F1F0A100000000000000000A /* PBXTargetDependency */,
+			);
 			fileSystemSynchronizedGroups = (
 				2075C6A7308604D200A0BC95 /* finflow */,
+				F1F0A1000000000000000003 /* Shared */,
 			);
 			name = finflow;
 			packageProductDependencies = (
@@ -71,6 +158,67 @@
 			productName = finflow;
 			productReference = 2075C6A5308604D200A0BC95 /* finflow.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F1F0A100000000000000000B /* FinFlowWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1F0A100000000000000000E /* Build configuration list for PBXNativeTarget "FinFlowWidget" */;
+			buildPhases = (
+				F1F0A1000000000000000005 /* Sources */,
+				F1F0A1000000000000000004 /* Frameworks */,
+				F1F0A1000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				F1F0A1000000000000000002 /* FinFlowWidget */,
+				F1F0A1000000000000000003 /* Shared */,
+			);
+			name = FinFlowWidget;
+			productName = FinFlowWidget;
+			productReference = F1F0A1000000000000000001 /* FinFlowWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F1F0B1000000000000000006 /* FinFlowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1F0B100000000000000000B /* Build configuration list for PBXNativeTarget "FinFlowTests" */;
+			buildPhases = (
+				F1F0B1000000000000000004 /* Sources */,
+				F1F0B1000000000000000003 /* Frameworks */,
+				F1F0B1000000000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1F0B1000000000000000008 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F1F0B1000000000000000002 /* FinFlowTests */,
+			);
+			name = FinFlowTests;
+			productName = FinFlowTests;
+			productReference = F1F0B1000000000000000001 /* FinFlowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F1F0C1000000000000000006 /* FinFlowUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1F0C100000000000000000B /* Build configuration list for PBXNativeTarget "FinFlowUITests" */;
+			buildPhases = (
+				F1F0C1000000000000000004 /* Sources */,
+				F1F0C1000000000000000003 /* Frameworks */,
+				F1F0C1000000000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1F0C1000000000000000008 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F1F0C1000000000000000002 /* FinFlowUITests */,
+			);
+			name = FinFlowUITests;
+			productName = FinFlowUITests;
+			productReference = F1F0C1000000000000000001 /* FinFlowUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -84,6 +232,17 @@
 				TargetAttributes = {
 					2075C6A4308604D200A0BC95 = {
 						CreatedOnToolsVersion = 27.1;
+					};
+					F1F0A100000000000000000B = {
+						CreatedOnToolsVersion = 27.1;
+					};
+					F1F0B1000000000000000006 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 2075C6A4308604D200A0BC95;
+					};
+					F1F0C1000000000000000006 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 2075C6A4308604D200A0BC95;
 					};
 				};
 			};
@@ -105,12 +264,30 @@
 			projectRoot = "";
 			targets = (
 				2075C6A4308604D200A0BC95 /* finflow */,
+				F1F0A100000000000000000B /* FinFlowWidget */,
+				F1F0B1000000000000000006 /* FinFlowTests */,
+				F1F0C1000000000000000006 /* FinFlowUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2075C6A3308604D200A0BC95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		F1F0A1000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		F1F0B1000000000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		F1F0C1000000000000000005 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -123,7 +300,40 @@
 			files = (
 			);
 		};
+		F1F0A1000000000000000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		F1F0B1000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		F1F0C1000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F1F0A100000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1F0A100000000000000000B /* FinFlowWidget */;
+			targetProxy = F1F0A1000000000000000009 /* PBXContainerItemProxy */;
+		};
+		F1F0B1000000000000000008 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2075C6A4308604D200A0BC95 /* finflow */;
+			targetProxy = F1F0B1000000000000000007 /* PBXContainerItemProxy */;
+		};
+		F1F0C1000000000000000008 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2075C6A4308604D200A0BC95 /* finflow */;
+			targetProxy = F1F0C1000000000000000007 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2075C6AE308604D200A0BC95 /* Debug configuration for PBXProject "finflow" */ = {
@@ -247,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Config/finflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7UQPWW3A4D;
@@ -255,11 +466,13 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/AppInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FinFlow;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "FinFlow uses the microphone only after you tap it, while you speak an expense. Audio stays on this device.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "FinFlow turns your spoken expenses into text on this device so they can be saved locally.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -296,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Config/finflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7UQPWW3A4D;
@@ -304,11 +518,13 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/AppInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FinFlow;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "FinFlow uses the microphone only after you tap it, while you speak an expense. Audio stays on this device.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "FinFlow turns your spoken expenses into text on this device so they can be saved locally.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -340,6 +556,186 @@
 			};
 			name = Release;
 		};
+		F1F0A100000000000000000C /* Debug configuration for PBXNativeTarget "FinFlowWidget" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Config/FinFlowWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7UQPWW3A4D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/WidgetInfo.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FinFlow;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = in.akshaux.finflow.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		F1F0A100000000000000000D /* Release configuration for PBXNativeTarget "FinFlowWidget" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Config/FinFlowWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7UQPWW3A4D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/WidgetInfo.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FinFlow;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = in.akshaux.finflow.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		F1F0B1000000000000000009 /* Debug configuration for PBXNativeTarget "FinFlowTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7UQPWW3A4D;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = in.akshaux.finflow.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				"TEST_HOST[sdk=iphoneos*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/finflow";
+				"TEST_HOST[sdk=iphonesimulator*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/finflow";
+				"TEST_HOST[sdk=macosx*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/Contents/MacOS/finflow";
+				"TEST_HOST[sdk=xros*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/finflow";
+				"TEST_HOST[sdk=xrsimulator*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/finflow";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		F1F0B100000000000000000A /* Release configuration for PBXNativeTarget "FinFlowTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7UQPWW3A4D;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = in.akshaux.finflow.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				"TEST_HOST[sdk=iphoneos*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/finflow";
+				"TEST_HOST[sdk=iphonesimulator*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/finflow";
+				"TEST_HOST[sdk=macosx*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/Contents/MacOS/finflow";
+				"TEST_HOST[sdk=xros*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/finflow";
+				"TEST_HOST[sdk=xrsimulator*]" = "$(BUILT_PRODUCTS_DIR)/finflow.app/finflow";
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		F1F0C1000000000000000009 /* Debug configuration for PBXNativeTarget "FinFlowUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7UQPWW3A4D;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = in.akshaux.finflow.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = finflow;
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		F1F0C100000000000000000A /* Release configuration for PBXNativeTarget "FinFlowUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7UQPWW3A4D;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = in.akshaux.finflow.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = finflow;
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -356,6 +752,30 @@
 			buildConfigurations = (
 				2075C6B1308604D200A0BC95 /* Debug configuration for PBXNativeTarget "finflow" */,
 				2075C6B2308604D200A0BC95 /* Release configuration for PBXNativeTarget "finflow" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		F1F0A100000000000000000E /* Build configuration list for PBXNativeTarget "FinFlowWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1F0A100000000000000000C /* Debug configuration for PBXNativeTarget "FinFlowWidget" */,
+				F1F0A100000000000000000D /* Release configuration for PBXNativeTarget "FinFlowWidget" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		F1F0B100000000000000000B /* Build configuration list for PBXNativeTarget "FinFlowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1F0B1000000000000000009 /* Debug configuration for PBXNativeTarget "FinFlowTests" */,
+				F1F0B100000000000000000A /* Release configuration for PBXNativeTarget "FinFlowTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		F1F0C100000000000000000B /* Build configuration list for PBXNativeTarget "FinFlowUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1F0C1000000000000000009 /* Debug configuration for PBXNativeTarget "FinFlowUITests" */,
+				F1F0C100000000000000000A /* Release configuration for PBXNativeTarget "FinFlowUITests" */,
 			);
 			defaultConfigurationName = Release;
 		};

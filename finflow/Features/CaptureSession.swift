@@ -1,6 +1,9 @@
 import Foundation
 import Observation
 import SwiftData
+#if os(iOS)
+import UIKit
+#endif
 
 @MainActor
 @Observable
@@ -10,9 +13,26 @@ final class CaptureSession {
     var recoveryAmount = ""
     var recoveryTitle = ""
 
-    private let capture = SpeechCapture()
+    private let speech: any SpeechListening
+    private let island: any IslandDisplaying
+    private let interpret: (String) async throws -> [DraftExpense]
     private var task: Task<Void, Never>?
     private var isRecording = false
+    private var lastIslandDetail = ""
+    private var lastIslandPush = Date.distantPast
+    #if os(iOS)
+    private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    #endif
+
+    init(
+        speech: (any SpeechListening)? = nil,
+        island: (any IslandDisplaying)? = nil,
+        interpret: ((String) async throws -> [DraftExpense])? = nil
+    ) {
+        self.speech = speech ?? SpeechCapture()
+        self.island = island ?? SystemIsland()
+        self.interpret = interpret ?? { try await ExpenseParser.parse($0) }
+    }
 
     var canSaveRecovery: Bool {
         !recoveryAmount.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -53,6 +73,25 @@ final class CaptureSession {
         }
     }
 
+    func beginFromLaunch(using context: ModelContext) {
+        guard phase != .listening, phase != .analyzing else { return }
+        toggle(using: context)
+    }
+
+    func stopIfListening() {
+        guard phase == .listening else { return }
+        #if os(iOS)
+        if backgroundTask == .invalid {
+            backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "FinFlowSave") { [weak self] in
+                Task { @MainActor in
+                    self?.endBackgroundTask()
+                }
+            }
+        }
+        #endif
+        isRecording = false
+    }
+
     func dismiss() {
         guard phase != .listening, phase != .analyzing else { return }
         reset()
@@ -62,10 +101,11 @@ final class CaptureSession {
         defer {
             task = nil
             isRecording = false
+            endBackgroundTask()
         }
         phase = .listening
         transcript = ""
-        let allowed = await capture.prepareAccess()
+        let allowed = await speech.prepareAccess()
         guard allowed else {
             phase = .failed("Microphone and speech recognition stay on this device. Allow both to record an expense.")
             return
@@ -75,19 +115,27 @@ final class CaptureSession {
             return
         }
         do {
-            try await capture.start()
+            try await speech.start()
         } catch {
             phase = .failed(error.localizedDescription)
             return
         }
+        publishIsland(title: "Listening", detail: "Say the amount and what it was for.", symbol: "waveform", force: true)
         while isRecording, !Task.isCancelled {
-            transcript = capture.transcript
+            transcript = speech.transcript
+            publishIsland(
+                title: "Listening",
+                detail: transcript.isEmpty ? "Say the amount and what it was for." : transcript,
+                symbol: "waveform"
+            )
             try? await Task.sleep(for: .milliseconds(120))
         }
-        let spoken = await capture.stop()
+        let spoken = await speech.stop()
         transcript = spoken
         guard !spoken.isEmpty else {
-            phase = .failed("I didn’t catch that. Tap the mic and say what you spent.")
+            let message = "I didn’t catch that. Tap the mic and say what you spent."
+            phase = .failed(message)
+            publishIsland(title: "Didn’t catch that", detail: message, symbol: "exclamationmark", ending: true, force: true)
             return
         }
         await finishAnalysis(of: spoken, using: context)
@@ -95,23 +143,40 @@ final class CaptureSession {
 
     private func finishAnalysis(of spoken: String, using context: ModelContext) async {
         phase = .analyzing
+        publishIsland(title: "Saving", detail: spoken, symbol: "hourglass", force: true)
         do {
-            let drafts = try await ExpenseParser.parse(spoken)
+            let drafts = try await interpret(spoken)
             guard !drafts.isEmpty else { throw ParserError.nothingRecognized }
             try ExpenseStore.save(drafts, in: context)
+            noteSaved(drafts)
             await showDone()
         } catch {
             phase = .failed(error.localizedDescription)
+            publishIsland(title: "Needs a look", detail: error.localizedDescription, symbol: "exclamationmark", ending: true, force: true)
         }
     }
 
     private func finishSaving(_ drafts: [DraftExpense], using context: ModelContext) async {
         do {
             try ExpenseStore.save(drafts, in: context)
+            noteSaved(drafts)
             await showDone()
         } catch {
             phase = .failed(error.localizedDescription)
+            publishIsland(title: "Needs a look", detail: error.localizedDescription, symbol: "exclamationmark", ending: true, force: true)
         }
+    }
+
+    private func noteSaved(_ drafts: [DraftExpense]) {
+        let total = drafts.reduce(0) { $0 + $1.amount }
+        let name = drafts.count == 1 ? drafts[0].title : "\(drafts.count) expenses"
+        publishIsland(
+            title: "Saved",
+            detail: "\(FinFlowTheme.rupees(total)) · \(name)",
+            symbol: "checkmark",
+            ending: true,
+            force: true
+        )
     }
 
     private func showDone() async {
@@ -125,5 +190,31 @@ final class CaptureSession {
         transcript = ""
         recoveryAmount = ""
         recoveryTitle = ""
+        lastIslandDetail = ""
+    }
+
+    private func publishIsland(title: String, detail: String, symbol: String, ending: Bool = false, force: Bool = false) {
+        let clipped = String(detail.prefix(140))
+        let now = Date()
+        if !force && !ending {
+            guard now.timeIntervalSince(lastIslandPush) >= 0.5, clipped != lastIslandDetail else { return }
+        }
+        lastIslandDetail = clipped
+        lastIslandPush = now
+        if ending {
+            island.end(title: title, detail: clipped, symbol: symbol)
+        } else if island.isRunning {
+            island.update(title: title, detail: clipped, symbol: symbol)
+        } else {
+            island.start(title: title, detail: clipped, symbol: symbol)
+        }
+    }
+
+    private func endBackgroundTask() {
+        #if os(iOS)
+        guard backgroundTask != .invalid else { return }
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = .invalid
+        #endif
     }
 }

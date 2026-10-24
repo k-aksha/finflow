@@ -44,6 +44,7 @@ struct WelcomeView: View {
                 }
                 .padding(.horizontal, 32)
                 .padding(.bottom, 28)
+                .frame(maxWidth: 440)
             }
         }
     }
@@ -51,6 +52,7 @@ struct WelcomeView: View {
 }
 
 struct SettingsView: View {
+    var embedded: Bool = false
     @Environment(\.modelContext) private var modelContext
     @Query private var expenses: [Expense]
     @State private var confirmErase = false
@@ -58,13 +60,15 @@ struct SettingsView: View {
 
     var body: some View {
         ZStack {
-            ScreenBackground()
-            PanelBackground()
+            if !embedded {
+                ScreenBackground()
+                PanelBackground()
+            }
             VStack(alignment: .leading, spacing: 22) {
                 Text("On this device")
                     .font(.system(size: 28, weight: .bold))
                     .foregroundStyle(.white)
-                    .padding(.top, 36)
+                    .padding(.top, embedded ? 8 : 36)
                 settingRow(
                     title: "Apple Intelligence",
                     value: SystemLanguageStatus.summary
@@ -72,6 +76,10 @@ struct SettingsView: View {
                 settingRow(
                     title: "Speech",
                     value: "Transcribed on device. Tap the mic to start, then tap again to finish"
+                )
+                settingRow(
+                    title: "From anywhere",
+                    value: launchHint
                 )
                 settingRow(
                     title: "Storage",
@@ -120,6 +128,16 @@ struct SettingsView: View {
         }
     }
 
+    private var launchHint: String {
+        #if os(macOS)
+        "Click the FinFlow mic in the menu bar, or press Command-Shift-E. A desktop widget opens the same listening session."
+        #elseif os(iOS)
+        "Add the FinFlow widget, or add Log expense in Control Center. Siri, the Action Button, and Back Tap can run “Log an expense.” On iPhone 14 Pro and later, listening shows in the Dynamic Island."
+        #else
+        "Tap the mic to start listening."
+        #endif
+    }
+
     private func settingRow(title: String, value: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
@@ -129,6 +147,15 @@ struct SettingsView: View {
                 .font(.system(size: 16, weight: .medium))
                 .foregroundStyle(.white)
         }
+        #if os(macOS)
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(FinFlowTheme.cardRaised, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .stroke(Color.white.opacity(0.08), lineWidth: 1)
+        }
+        #endif
     }
 }
 

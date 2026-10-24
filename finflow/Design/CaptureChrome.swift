@@ -19,18 +19,14 @@ struct FlowTabBar: View {
         }
         .padding(5 * screenScale)
         .background {
-            Capsule()
-                .fill(.ultraThinMaterial)
-                .overlay {
-                    Capsule().fill(FinFlowTheme.tabBar)
-                }
+            Capsule().fill(FinFlowTheme.tabBar)
         }
         .overlay {
             Capsule()
                 .stroke(Color.white.opacity(0.16), lineWidth: 0.6)
         }
         .shadow(
-            color: Color(red: 0.27, green: 0.05, blue: 0.85).opacity(0.45),
+            color: Color.black.opacity(0.45),
             radius: 18 * screenScale,
             y: 10 * screenScale
         )
@@ -79,8 +75,8 @@ struct MicControl: View {
                     .fill(
                         RadialGradient(
                             colors: [
-                                Color(red: 0.55, green: 0.28, blue: 1),
-                                Color(red: 0.32, green: 0.08, blue: 0.72)
+                                Color(red: 0.22, green: 0.22, blue: 0.22),
+                                Color(red: 0.08, green: 0.08, blue: 0.08)
                             ],
                             center: .center,
                             startRadius: 4 * screenScale,
@@ -88,7 +84,7 @@ struct MicControl: View {
                         )
                     )
                     .frame(width: side, height: side)
-                    .shadow(color: Color(red: 0.45, green: 0.2, blue: 1).opacity(0.7), radius: 18 * screenScale, y: 8 * screenScale)
+                    .shadow(color: Color.black.opacity(0.55), radius: 18 * screenScale, y: 8 * screenScale)
                 RoundedRectangle(cornerRadius: 4 * screenScale, style: .continuous)
                     .fill(.white)
                     .frame(width: 22 * screenScale, height: 22 * screenScale)

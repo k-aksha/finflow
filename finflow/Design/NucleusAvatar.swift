@@ -1,5 +1,8 @@
 import Lottie
 import SwiftUI
+#if os(macOS)
+import AppKit
+#endif
 
 private struct ScreenScaleKey: EnvironmentKey {
     static let defaultValue: CGFloat = 1
@@ -17,8 +20,9 @@ struct ScreenScaleReader<Content: View>: View {
 
     var body: some View {
         GeometryReader { proxy in
+            let scale = proxy.size.width > 500 ? 1 : proxy.size.width / 402
             content()
-                .environment(\.screenScale, proxy.size.width / 402)
+                .environment(\.screenScale, scale)
                 .frame(width: proxy.size.width, height: proxy.size.height)
         }
     }
@@ -70,8 +74,14 @@ struct CharacterAnimation: View {
             }
             .configure { view in
                 view.contentMode = .scaleAspectFit
+                #if os(macOS)
+                view.wantsLayer = true
+                view.layer?.backgroundColor = NSColor.clear.cgColor
+                view.layer?.masksToBounds = false
+                #else
                 view.backgroundColor = .clear
                 view.clipsToBounds = false
+                #endif
             }
             .accessibilityHidden(true)
     }

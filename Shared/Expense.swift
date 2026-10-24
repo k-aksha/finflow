@@ -29,7 +29,7 @@ nonisolated final class Expense {
     }
 }
 
-enum ExpenseCategory {
+nonisolated enum ExpenseCategory {
     static let all = [
         "Food & drink",
         "Transport",
@@ -60,10 +60,6 @@ enum ExpenseCategory {
             || value.contains("cab") {
             return "Transport"
         }
-        if value.contains("bill") || value.contains("rent") || value.contains("recharge")
-            || value.contains("electric") {
-            return "Bills"
-        }
         if value.contains("medicine") || value.contains("doctor") || value.contains("pharmacy") {
             return "Health"
         }
@@ -72,6 +68,10 @@ enum ExpenseCategory {
         }
         if value.contains("shop") || value.contains("amazon") || value.contains("clothes") {
             return "Shopping"
+        }
+        if value.contains("bill") || value.contains("rent") || value.contains("recharge")
+            || value.contains("electric") {
+            return "Bills"
         }
         return "Other"
     }

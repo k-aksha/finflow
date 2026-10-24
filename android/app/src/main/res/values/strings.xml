@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FinFlow</string>
+    <string name="widget_name">FinFlow</string>
+    <string name="widget_description">Today’s spending. Tap to start listening.</string>
+    <string name="log_expense">Log expense</string>
+</resources>

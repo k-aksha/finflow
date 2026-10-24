@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_mic"
+        android:shortcutId="log"
+        android:shortcutShortLabel="@string/log_expense">
+        <intent
+            android:action="in.akshaux.finflow.START_CAPTURE"
+            android:targetClass="in.akshaux.finflow.MainActivity"
+            android:targetPackage="in.akshaux.finflow" />
+    </shortcut>
+</shortcuts>

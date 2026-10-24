@@ -1,15 +1,16 @@
 import SwiftUI
 
 enum FinFlowTheme {
-    static let backgroundTop = Color(red: 0.035, green: 0, blue: 0.137)
-    static let backgroundBottom = Color(red: 0.051, green: 0, blue: 0.196)
-    static let panelTop = Color(red: 0.467, green: 0.082, blue: 1).opacity(0.10)
-    static let panelBottom = Color(red: 0.439, green: 0.125, blue: 1).opacity(0.04)
-    static let card = Color(red: 0.094, green: 0, blue: 0.318)
-    static let tabBar = Color(red: 0.184, green: 0, blue: 0.639).opacity(0.8)
-    static let tabSelected = Color(red: 0.545, green: 0.247, blue: 1)
-    static let pill = Color(red: 0.302, green: 0.035, blue: 0.522)
-    static let category = Color(red: 0.467, green: 0.082, blue: 1)
+    static let backgroundTop = Color(red: 17.0 / 255, green: 17.0 / 255, blue: 17.0 / 255)
+    static let backgroundBottom = Color(red: 9.0 / 255, green: 9.0 / 255, blue: 9.0 / 255)
+    static let panelTop = Color.white.opacity(0.045)
+    static let panelBottom = Color.white.opacity(0.02)
+    static let card = Color(red: 28.0 / 255, green: 28.0 / 255, blue: 28.0 / 255)
+    static let cardRaised = Color(red: 42.0 / 255, green: 42.0 / 255, blue: 42.0 / 255)
+    static let tabBar = Color(red: 23.0 / 255, green: 23.0 / 255, blue: 23.0 / 255)
+    static let tabSelected = Color(red: 46.0 / 255, green: 46.0 / 255, blue: 46.0 / 255)
+    static let pill = Color(red: 36.0 / 255, green: 36.0 / 255, blue: 36.0 / 255)
+    static let category = Color(red: 51.0 / 255, green: 51.0 / 255, blue: 51.0 / 255)
     static let muted = Color.white.opacity(0.7)
     static let faint = Color(red: 0.671, green: 0.671, blue: 0.671).opacity(0.9)
     static let placeholder = Color(red: 0.416, green: 0.416, blue: 0.416)
@@ -38,6 +39,16 @@ struct ScreenBackground: View {
 
 struct PanelBackground: View {
     var body: some View {
+        #if os(macOS)
+        RoundedRectangle(cornerRadius: 32, style: .continuous)
+            .fill(FinFlowTheme.card)
+            .overlay {
+                RoundedRectangle(cornerRadius: 32, style: .continuous)
+                    .stroke(Color.white.opacity(0.08), lineWidth: 1)
+            }
+            .padding(.horizontal, 18)
+            .padding(.vertical, 18)
+        #else
         RoundedRectangle(cornerRadius: 39, style: .continuous)
             .fill(
                 LinearGradient(
@@ -49,5 +60,6 @@ struct PanelBackground: View {
             .padding(.horizontal, 9)
             .padding(.top, 8)
             .padding(.bottom, 6)
+        #endif
     }
 }

@@ -1,0 +1,10 @@
+.DS_Store
+.derived*/
+dist/
+xcuserdata/
+*.xcuserstate
+*.ipa
+*.dmg
+*.apk
+*.aab
+*.xcarchive

@@ -1,6 +1,7 @@
 import Foundation
 import os
 import SwiftData
+import WidgetKit
 
 enum ExpenseStoreError: LocalizedError {
     case nothingToSave
@@ -24,6 +25,7 @@ enum ExpenseStore {
         }
         do {
             try context.save()
+            WidgetCenter.shared.reloadAllTimelines()
         } catch {
             log.error("Could not save expenses: \(error.localizedDescription, privacy: .public)")
             throw error
@@ -36,6 +38,7 @@ enum ExpenseStore {
         }
         do {
             try context.save()
+            WidgetCenter.shared.reloadAllTimelines()
         } catch {
             log.error("Could not erase expenses: \(error.localizedDescription, privacy: .public)")
             throw error

@@ -153,8 +153,28 @@ enum LocalExpenseParser {
         "at", "from", "in", "total", "overall", "altogether"
     ]
 
+    private static let fillerWords: Set<String> = [
+        "um", "umm", "uhm", "uh", "uhh", "hmm", "hm", "mm", "mmm", "erm", "er", "ah", "ahh", "eh",
+        "like", "so", "well", "basically", "actually", "literally", "just",
+        "kinda", "sorta", "okay", "ok", "yeah", "yea", "yep", "yup", "yes", "right", "please", "pls",
+        "anyway", "honestly", "alright", "huh", "thanks", "thank"
+    ]
+
+    private static let fillerPhrases: [[String]] = [
+        ["kind", "of"],
+        ["sort", "of"],
+        ["you", "know"],
+        ["i", "mean"],
+        ["i", "guess"],
+        ["you", "see"],
+        ["thank", "you"],
+        ["all", "right"],
+        ["kind", "a"],
+        ["sort", "a"]
+    ]
+
     static func parse(_ transcript: String) -> [DraftExpense] {
-        let words = tokenize(transcript)
+        let words = stripFillers(tokenize(transcript))
         let matches = amounts(in: words)
         guard !matches.isEmpty else { return [] }
 
@@ -192,12 +212,19 @@ enum LocalExpenseParser {
         var found: [AmountMatch] = []
         var index = 0
         while index < words.count {
-            if rupeeWords.contains(words[index]), let parsed = number(in: words, from: index + 1) {
-                found.append(AmountMatch(value: parsed.value, start: index, end: pastRupee(parsed.end, in: words)))
-                index = pastRupee(parsed.end, in: words)
+            if rupeeWords.contains(words[index]),
+               let parsed = number(in: words, from: index + 1),
+               !isCount(in: words, start: index + 1, end: parsed.end) {
+                let end = pastRupee(parsed.end, in: words)
+                found.append(AmountMatch(value: parsed.value, start: index, end: end))
+                index = end
                 continue
             }
             if let parsed = number(in: words, from: index) {
+                if isCount(in: words, start: index, end: parsed.end) {
+                    index = parsed.end
+                    continue
+                }
                 let end = pastRupee(parsed.end, in: words)
                 let followedByPurpose = end < words.count && connectors.contains(words[end])
                 if parsed.strong || followedByPurpose || (end > parsed.end) {
@@ -326,11 +353,101 @@ enum LocalExpenseParser {
     }
 
     private static func nameWords(_ words: [String]) -> String {
-        let kept = words
-            .filter { !skipWords.contains($0) && !connectors.contains($0) && decimal($0) == nil && scale($0) == nil }
-            .prefix(8)
+        var kept: [String] = []
+        var index = 0
+        while index < words.count, kept.count < 8 {
+            let word = words[index]
+            if fillerWords.contains(word) {
+                index += 1
+                continue
+            }
+            if let parsed = number(in: words, from: index), parsed.end > index {
+                kept.append(formatCount(parsed.value))
+                index = parsed.end
+                continue
+            }
+            if skipWords.contains(word) || connectors.contains(word) || scale(word) != nil || rupeeWords.contains(word) {
+                index += 1
+                continue
+            }
+            kept.append(word)
+            index += 1
+        }
         guard !kept.isEmpty else { return "" }
-        return kept.joined(separator: " ").capitalized
+        return kept.map(displayToken).joined(separator: " ")
+    }
+
+    private static func isCount(in words: [String], start: Int, end: Int) -> Bool {
+        guard end < words.count, isPurchaseWord(words[end]) else { return false }
+        return hasMoneyAmount(in: words, skipStart: start, skipEnd: end)
+    }
+
+    private static func hasMoneyAmount(in words: [String], skipStart: Int, skipEnd: Int) -> Bool {
+        var index = 0
+        while index < words.count {
+            if index >= skipStart && index < skipEnd {
+                index = skipEnd
+                continue
+            }
+            if let parsed = number(in: words, from: index), parsed.end > index {
+                if isMoney(in: words, parsed: parsed) { return true }
+                index = parsed.end
+                continue
+            }
+            index += 1
+        }
+        return false
+    }
+
+    private static func isMoney(in words: [String], parsed: NumberParse) -> Bool {
+        let end = pastRupee(parsed.end, in: words)
+        if end > parsed.end { return true }
+        if end < words.count, connectors.contains(words[end]) { return true }
+        if parsed.strong, parsed.end >= words.count || !isPurchaseWord(words[parsed.end]) { return true }
+        return false
+    }
+
+    private static func isPurchaseWord(_ word: String) -> Bool {
+        if fillerWords.contains(word) || skipWords.contains(word) || connectors.contains(word) || rupeeWords.contains(word) {
+            return false
+        }
+        if units[word] != nil || scale(word) != nil || decimal(word) != nil { return false }
+        if word == "half" || word == "point" || word == "decimal" { return false }
+        return true
+    }
+
+    private static func formatCount(_ value: Double) -> String {
+        if abs(value - value.rounded()) < 0.001 {
+            return String(Int(value.rounded()))
+        }
+        return String(value)
+    }
+
+    private static func displayToken(_ token: String) -> String {
+        guard let first = token.first else { return token }
+        if first.isNumber { return token }
+        return token.prefix(1).uppercased() + token.dropFirst()
+    }
+
+    private static func stripFillers(_ words: [String]) -> [String] {
+        var kept: [String] = []
+        var index = 0
+        while index < words.count {
+            if let phrase = fillerPhrases.first(where: { phrase in
+                guard index + phrase.count <= words.count else { return false }
+                return Array(words[index..<(index + phrase.count)]) == phrase
+            }) {
+                index += phrase.count
+                continue
+            }
+            if fillerWords.contains(words[index]) {
+                index += 1
+                continue
+            }
+            kept.append(words[index])
+            index += 1
+        }
+        return kept
     }
 
     private static func pastRupee(_ index: Int, in words: [String]) -> Int {
