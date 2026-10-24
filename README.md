@@ -4,6 +4,15 @@ FinFlow is an on-device voice expense tracker for Indian rupees. You tap the mic
 
 The spoken amount is parsed on the device, including lakh and crore. Filler words are dropped, and spoken numbers are stored as digits.
 
+<p align="center">
+  <img src="docs/iphone.png" width="250" alt="FinFlow on iPhone">
+  <img src="docs/ipad.png" width="480" alt="FinFlow on iPad">
+</p>
+
+<p align="center">
+  <img src="docs/mac.png" width="720" alt="FinFlow on Mac">
+</p>
+
 ## Downloads
 
 Installable builds are attached to [GitHub Releases](https://github.com/k-aksha/finflow/releases):
