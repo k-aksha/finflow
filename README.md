@@ -38,4 +38,4 @@ The installable APK is `android/app/build/outputs/apk/debug/app-debug.apk`.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+Personal use is allowed. Commercial use is not, and you may not sell FinFlow or charge anyone for a copy. See [LICENSE](LICENSE).
